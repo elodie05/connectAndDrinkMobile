@@ -1,0 +1,19 @@
+<ion-view view-title="Connect & Drink" name="login-view">
+  <ion-content class="padding">      
+      
+		<div class="list">
+		  <label class="item item-input item-floating-label">
+		    <span class="input-label">Nom d'utilisateur</span>
+		    <input type="text" placeholder="Nom d'utilisateur"  ng-model="data.username">
+		  </label>
+		  <label class="item item-input item-floating-label">
+		    <span class="input-label">Mot de passe</span>
+		    <input type="password" placeholder="Mot de passe" ng-model="data.password">
+		  </label>
+		</div>
+      
+      <button class="button button-block button-royal" ng-click="login()">Se connecter</button>
+     
+      <a href="#/signin">S'inscrire</a>
+  </ion-content>
+</ion-view>

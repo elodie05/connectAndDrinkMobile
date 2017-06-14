@@ -1,0 +1,13 @@
+<ion-view view-title="Mes commandes">
+  <ion-content class="padding">
+  
+  <div ng-show="!commands">VIDE</div>
+
+ <ul ng-show="commands">
+  <li ng-repeat="command in commands">{{command}}<a href=""></a></li>
+</ul>
+
+ <div ng-show="!commands"> show if photo is empty</div>
+
+  </ion-content>
+</ion-view>
