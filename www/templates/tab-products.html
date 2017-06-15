@@ -25,20 +25,14 @@
 </div>  	
 
  -->
-    
+
 <div class="row">
 
-  <div class="col">
-  	<a href="#/product/1"><img src="img/mojito.png" style="width:60px;height:60px;"></a>
-	    <h5>Mojito</h5>
-	    <p>6.50 €<p>
+	<div class="col" ng-repeat="product in products">
+  	<a href="#/product/{{product.itemId}}"><img src="{{product.url}}" style="width:60px;height:60px;">
+	    <h5>{{product.libelle}}</h5>
+	    <p>{{product.prix}} €<p></a>
   </div>
-  <div class="col">
-  	<img src="img/sexonthebeach.png" style="width:60px;height:60px;">
-	    <h5>Sex on the beach</h5>
-	    <p>6.50 €<p>
-  </div>
-
 </div>
     
     
