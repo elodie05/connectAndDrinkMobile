@@ -1,16 +1,13 @@
 <ion-view view-title="Ma commande">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
+   <ul class="list">
+    <li class="item">Mojito x 3</li>
+    <li class="item">Pina colada x 2</li>
+</ul>
 
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
+
+ <button class="button button-block button-royal" ng-click="buy()">Payer</button>
+ <br/>
+<center><img src="img/qrcode.png" style="height:150px;" ng-show="qrcode == true"></center>
   </ion-content>
 </ion-view>

@@ -61,6 +61,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  
+  .state('command', {
+      url: '/command/:id',
+      templateUrl: 'templates/command-detail.html',
+      controller: 'CommandCtrl'
+   })
 
   .state('tab.shop', {
       url: '/shop',

@@ -1,18 +1,14 @@
 angular.module('starter.controllers', [])
 
 .controller('HomeCtrl', function($scope, $http) {
-	
-	//$scope.commands = ['Commande 1','Commande 2','Commande 3'];
-	
-	 	  
+
 	  /*var req = {
 			  method: 'POST',
 			  url: 'http://localhost:3000/api/command',
 			  headers: {
 				  'Authorization' : 'Bearer '+localStorage.getItem('token')
 			  },
-			  data: JSON.stringify({ ref:'1234',total: '15',user: localStorage.getItem('userId'),
-				  state: 'payee'})
+			  data: JSON.stringify({ items : JSON.stringify([0,0,1,1,1,1]),user: localStorage.getItem('userId')})
 			  };
 	
 			 
@@ -37,8 +33,8 @@ angular.module('starter.controllers', [])
 	};
 			 
 			 $http(req).then(function(response){
-					  console.log(JSON.stringify(response))
-					  $scope.commands = response.data
+					  //console.log(JSON.stringify(response))
+					  $scope.commands = response.data;
 					 
 				 }, 
 				 function(error){
@@ -50,6 +46,55 @@ angular.module('starter.controllers', [])
   
 	
 })
+
+.controller('CommandCtrl', function($scope,$http,$stateParams) {
+	
+	var req = {
+			  method: 'GET',
+			  url: 'http://localhost:3000/api/command/'+$stateParams.id,
+			  headers: {
+				  'Authorization' : 'Bearer '+localStorage.getItem('token')
+			  }
+			 }
+	
+			 var liste = [];
+			 $http(req).then(function(response){
+				 //console.log(JSON.stringify(response));
+					  $scope.command = response.data;
+					  var items = response.data.items;
+					  angular.forEach(items, function (value){
+		
+						  req = {
+								  method: 'GET',
+								  url: 'http://localhost:3000/api/item/'+value,
+								  headers: {
+									  'Authorization' : 'Bearer '+localStorage.getItem('token')
+								  }
+								 }
+						  
+						  
+						  $http(req).then(function(response){
+							  //console.log(JSON.stringify(response))
+							 
+							 
+								 }, 
+								 function(error){
+									console.log(error)
+								 }
+						  )
+						  
+						  
+					  });
+			
+				 }, 
+				 function(error){
+					console.log(error)
+				 }
+			)
+			
+	
+})
+
 
 .controller('AccountCtrl', function($scope, $http) {
 	console.log('ok');
@@ -118,14 +163,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProductCtrl', function($scope,$http,$stateParams) {
-	if(!localStorage.getItem('panier')){
-		console.log('pas panier')
-		var panier = [];localStorage.setItem('panier',panier)
-	}else{
-		var panier =localStorage.getItem('panier');
-	};
-	var item = [];
-	
+
 	
 	var req = {
 			  method: 'GET',
@@ -143,34 +181,33 @@ angular.module('starter.controllers', [])
 				 }
 			)
 			
-	$scope.quantite = 0;
+
 	
-	console.log('paniiiier',panier);
-	
-	
+	$scope.quantite = 1;
 	$scope.add = function(){
 		$scope.quantite++;
-		item[$stateParams.id] = $scope.quantite;
-
-		console.log('panier',panier);
+		
 	}
 	$scope.remove = function(){
 		$scope.quantite--;
-		item[$stateParams.id] = $scope.quantite;
-	
-		console.log('panier',panier);
-		//empêcher valeur négatives
+		
 	}
-	
-	panier.push(item)
-	//stocker en local le panier (item + qté)
+
 })
 
 .controller('ShopCtrl', function($scope) {
-	sessionStorage.getItem('panier');
-	console.log(panier);
+	console.log('ok');
+	$scope.qrcode = false;
+	
+	
+	 $scope.buy = function() {
 
- 
+
+	      
+	      $scope.qrcode = true;
+
+	    }
+	
 })
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state,$http,$window) {

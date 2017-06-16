@@ -3,10 +3,12 @@
   
   <div ng-show="commands == ''">Vous n'avez pas encore passé de commandes</div>
 
- <ul ng-show="commands">
-  <li ng-repeat="command in commands">{{command.ref}}<a href="#/command/{{command.ref}}"></a></li>
-</ul>
 
+<ul class="list">
+    <li class="item" ng-repeat="command in commands">
+    	<a href="#/command/{{command.commandId}}">{{command.date  | date : format : short}}</a>
+    </li>
+</ul>
 
   </ion-content>
 </ion-view>
